@@ -17,8 +17,8 @@
 
 # -- Project information -----------------------------------------------------
 
-project = 'Technical Architecture Docs'
-copyright = '2020, Nathan'
+project = 'Report Docs'
+copyright = '2023, Nathan'
 author = 'Nathan'
 
 
