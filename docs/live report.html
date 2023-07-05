@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Live Report &#8212; Technical Architecture Docs  documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Live Report documentation!" href="index.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="live-report">
+<h1>Live Report<a class="headerlink" href="#live-report" title="Permalink to this heading">¶</a></h1>
+<section id="cms-kpi">
+<h2><strong>CMS KPI</strong><a class="headerlink" href="#cms-kpi" title="Permalink to this heading">¶</a></h2>
+<section id="contract-kpi">
+<h3>1. Contract KPI<a class="headerlink" href="#contract-kpi" title="Permalink to this heading">¶</a></h3>
+<blockquote>
+<div><p>Xem số lượng lead theo chiến dịch</p>
+<a class="reference internal image-reference" href="_images/ContractKPI1.png"><img alt="_images/ContractKPI1.png" src="_images/ContractKPI1.png" style="width: 400pt;" /></a>
+<p>Đặc tả:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Lead: tổng số lead</p></li>
+<li><p>Coupon: tổng số lead được được phân</p></li>
+<li><p>App: tổng số lead có lịch hẹn</p></li>
+<li><p>Visit: tổng số lead đã đến trung tâm</p></li>
+<li><p>Contract (MKT): tổng số lead đã chuyển thành học viên được tính cho MKT</p></li>
+<li><p>Contract (School): tổng số lead đã chuyển thành học viên được tính cho School</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul class="simple">
+<li><p>Chương trình ASP: Nếu ngày tạo lead so với ngày chuyển học viên dưới <strong>30</strong> ngày thì Contract được tính cho MKT còn ngược lại được tính cho trường</p></li>
+<li><p>Chương trình KDG, BR01: Nếu ngày tạo lead so với ngày chuyển học viên dưới <strong>60</strong> ngày thì Contract được tính cho MKT còn ngược lại được tính cho trường</p></li>
+<li><p>Chương trình ASP: Nếu ngày tạo lead so với ngày chuyển học viên dưới <strong>90</strong> ngày thì Contract được tính cho MKT còn ngược lại được tính cho trường</p></li>
+<li><p>Ngày chuyển học viên được tính theo trạng thái CONTRACT và Contracted</p></li>
+</ul>
+</div>
+<ul class="simple">
+<li><p>Contracted Day: ngày chuyển đổi thành học viên</p></li>
+</ul>
+</div></blockquote>
+</div></blockquote>
+</section>
+<section id="registration">
+<h3>2. Registration<a class="headerlink" href="#registration" title="Permalink to this heading">¶</a></h3>
+<blockquote>
+<div><p>Xem sỉ số bé tại trung tâm</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Báo cáo có chạy job</p>
+</div>
+<a class="reference internal image-reference" href="_images/Registration1.png"><img alt="_images/Registration1.png" src="_images/Registration1.png" style="width: 400pt;" /></a>
+<ul class="simple">
+<li><p>Actual: số lượng hv trong ngày</p></li>
+<li><p>Net: số lượng tăng/giảm so ngày trước</p></li>
+<li><p>Prev: số hv so với cuối tháng trước</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Actual, Net, Prev: tính theo công thức báo cáo Enrollment</p>
+</div>
+<ul class="simple">
+<li><p>New Register: số đăng ký mới</p></li>
+<li><p>Saving: bảo lưu</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Tính theo báo cáo Saving</p>
+</div>
+<ul class="simple">
+<li><p>Waiting: chờ lớp</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Tính theo báo cáo Waiting</p>
+</div>
+<ul class="simple">
+<li><p>Teacher: số lượng giáo viên</p></li>
+<li><p>Rate: tỷ lệ Teacher/Actual</p></li>
+<li><p>NSU: số học viên mới</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="new-cash-in">
+<h3>3. New Cash In<a class="headerlink" href="#new-cash-in" title="Permalink to this heading">¶</a></h3>
+</section>
+<section id="enrollment">
+<h3>4. Enrollment<a class="headerlink" href="#enrollment" title="Permalink to this heading">¶</a></h3>
+</section>
+<section id="re-enrollment">
+<h3>5. Re-Enrollment<a class="headerlink" href="#re-enrollment" title="Permalink to this heading">¶</a></h3>
+<p>Xem số lượng tái tục theo tỷ lệ học phí mới</p>
+<dl class="simple">
+<dt>Điều kiện lấy hv trong tháng:</dt><dd><ul class="simple">
+<li><p>Hv có học phí cho vào lớp trong tháng/năm xem báo cáo, và tổng học phí &gt;= <strong>50%</strong> học phí lớp</p></li>
+</ul>
+</dd>
+<dt>Điều kiện tính Re-Enrollment theo tháng tiếp theo</dt><dd><ul class="simple">
+<li><p>Tháng/Năm hv bắt đầu học sau thời điểm đang xem</p></li>
+<li><p>Hoặc tháng/năm hv kết thúc lớp sau thời điểm đang xem</p></li>
+<li><p>Hoặc tháng/năm khai giảng lớp sau thời điểm đang xem</p></li>
+<li><p>Hoặc tháng/năm kết thúc lớp sau thời điểm đang xem</p></li>
+<li><p>Và tổng học phí bỏ vào lớp &gt;= <strong>80%</strong> học phí lớp</p></li>
+</ul>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul class="simple">
+<li><p>Tổng học phí bỏ vào lớp được tính bằng tổng số tiền bỏ vào lớp có ngày trước ngày bắt đầu của lớp</p></li>
+<li><p>Học phí số tiền trong tab Học phí màn hình chi tiết học viên</p></li>
+</ul>
+</div>
+</section>
+<section id="enrollment-by-day">
+<h3>6. Enrollment By Day<a class="headerlink" href="#enrollment-by-day" title="Permalink to this heading">¶</a></h3>
+</section>
+<section id="waiting">
+<h3>7. Waiting<a class="headerlink" href="#waiting" title="Permalink to this heading">¶</a></h3>
+</section>
+<section id="collection-analytics">
+<h3>7. Collection analytics<a class="headerlink" href="#collection-analytics" title="Permalink to this heading">¶</a></h3>
+</section>
+<section id="revenue-analytics">
+<h3>9. Revenue analytics<a class="headerlink" href="#revenue-analytics" title="Permalink to this heading">¶</a></h3>
+</section>
+<section id="nsu-analytics">
+<h3>10. NSU analytics<a class="headerlink" href="#nsu-analytics" title="Permalink to this heading">¶</a></h3>
+</section>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Technical Architecture Docs</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Live Report</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#cms-kpi"><strong>CMS KPI</strong></a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="index.html" title="previous chapter">Live Report documentation!</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, Nathan.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 7.0.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.13</a>
+      
+      |
+      <a href="_sources/live report.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
