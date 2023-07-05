@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Cấu trúc Crud &#8212; Technical Architecture Docs  documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="License" href="License.html" />
+    <link rel="prev" title="Cấu trúc Crud" href="fn%20structure.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="cau-truc-crud">
+<h1>Cấu trúc Crud<a class="headerlink" href="#cau-truc-crud" title="Permalink to this heading">¶</a></h1>
+<section id="source">
+<h2><strong>Source</strong><a class="headerlink" href="#source" title="Permalink to this heading">¶</a></h2>
+<p>Project Name: Crud</p>
+<p><a class="reference external" href="https://ntnk1984.visualstudio.com/DirJs/_git/DirJs">https://ntnk1984.visualstudio.com/DirJs/_git/DirJs</a></p>
+</section>
+<section id="khai-bao">
+<h2><strong>Khai báo</strong><a class="headerlink" href="#khai-bao" title="Permalink to this heading">¶</a></h2>
+<dl>
+<dt>dir</dt><dd><ul class="simple">
+<li><p>load: api load dữ liệu</p></li>
+<li><p>loaddetail: truyền thêm biến vào api load và api submit</p></li>
+<li><p>type: phương thức GET/POST</p></li>
+<li><p>post: api lưu dữ liệu</p></li>
+<li><p>autoloadgrid: tự động tải dữ liệu khi tải trang</p></li>
+<li><p>Id: khóa chính của bảng dữ liệu (Mặc định Id)</p></li>
+</ul>
+</dd>
+<dt>grid</dt><dd><ul class="simple">
+<li><p>target: id của thẻ div</p></li>
+<li><p>col: các cột dữ liệu</p></li>
+<li><p>toolbar: thanh công cụ</p></li>
+<li><p>hidecolumn: true: responsive, false: cột tràn ra ngoài màn hình</p></li>
+<li><p>selection: single/multi</p></li>
+<li><p>group: cho phép chọn nhóm các cột trên lưới (true/false)</p></li>
+</ul>
+</dd>
+<dt>form</dt><dd><ul class="simple">
+<li><p>target: id của thẻ div</p></li>
+<li><p>labellocation: vị trí tên của trường left, right, top</p></li>
+<li><p>col: số cột layout</p></li>
+<li><p>items: các trường nhập liệu</p></li>
+<li><p>pop:
++ target: id the div
++ width: chiều rộng
++ height: chiều cao</p></li>
+<li><p>setvalues: sự kiện khi nhấn nút thêm mới</p></li>
+</ul>
+</dd>
+<dt>search</dt><dd><ul class="simple">
+<li><p>target: id thẻ div</p></li>
+</ul>
+</dd>
+<dt>loading</dt><dd><ul class="simple">
+<li><p>target: id thẻ div</p></li>
+</ul>
+</dd>
+<dt>Các sự kiện của form</dt><dd><ul class="simple">
+<li><p>fieldchanged: khi thay đổi giá trị các trường trên form</p></li>
+<li><p>onsuccess: khi lưu thành công</p></li>
+<li><p>onshowing: khi nhấn thêm mới/ sửa</p></li>
+<li><p>submit: thay thế save</p></li>
+</ul>
+</dd>
+<dt>Các sự kiện của grid</dt><dd><ul class="simple">
+<li><p>onloading</p></li>
+<li><p>onrefreshing</p></li>
+<li><p>refresh</p></li>
+</ul>
+</dd>
+<dt>Cấu trúc Dir</dt><dd><ul class="simple">
+<li><p>RefreshGrid: chỉ tải lại dữ liệu hiện tại trong ds</p></li>
+<li><p>LoadGrid: tải lại dữ liệu mới</p></li>
+</ul>
+<blockquote>
+<div><ul class="simple">
+<li><p>Lưu ý: cột có định dạng ‘ud’ ở đầu sẽ được dịch ra trong message</p></li>
+</ul>
+</div></blockquote>
+</dd>
+</dl>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&lt;script type=&quot;text/javascript&quot;&gt;
+$(() =&gt; {
+    $(&quot;#titledir&quot;).text(Globalize.formatMessage(&quot;Area&quot;))
+
+
+    var CR = new FLib.Crud(
+
+        id = &#39;Area&#39;,
+        dir = {
+            controller: &#39;CategoryV2&#39;,
+            load: &#39;Areas&#39;,
+            type: &#39;GET&#39;,
+            post: &#39;AreaPost&#39;,
+            autoloadgrid: true
+        },
+
+        grid = {
+            target: &#39;#grid&#39;,
+            col: oDir.oGrid.columns,
+            toolbar: oDir.oGrid.Toolbar,
+            hidecolumn: false,
+            selection: &#39;single&#39;,
+            height: 450,
+            //summary: oGrid.summary,
+            group: false,
+            settings: oDir.oGrid.Settings,
+
+
+        },
+        form = {
+            target: &#39;#form&#39;,
+            width: &#39;auto&#39;,
+            height: &#39;95%&#39;,
+            labellocation: &#39;left&#39;,
+            col: 2,
+            items: oDir.FormDir.items,
+            pop: {
+                target: &#39;#popup&#39;,
+                width: &#39;75%&#39;,
+                height: &#39;47%&#39;
+            },
+            setvalues: () =&gt; {
+                if (CR.cAction == &quot;New&quot;)
+                {
+                    CR.Form.itemOption(&#39;IsActive&#39;, &#39;visible&#39;, true);
+
+                }
+
+
+            }
+        },
+        undefined,
+        loading = {
+            target: &#39;.loadpanel&#39;
+        }
+    )
+
+})
+
+&lt;/script&gt;
+</pre></div>
+</div>
+</section>
+<section id="step-by-step">
+<h2><strong>Step By Step</strong><a class="headerlink" href="#step-by-step" title="Permalink to this heading">¶</a></h2>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Technical Architecture Docs</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="crud.html">Crud</a></li>
+<li class="toctree-l1"><a class="reference internal" href="crud%20structure.html">Cấu trúc Crud</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fn%20structure.html">Cấu trúc Function Fn</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Cấu trúc Report</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#source"><strong>Source</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#khai-bao"><strong>Khai báo</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#step-by-step"><strong>Step By Step</strong></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="License.html">License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dirlib.html">Dirlib</a></li>
+<li class="toctree-l1"><a class="reference internal" href="live%20report.html">Live Report</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="fn%20structure.html" title="previous chapter">Cấu trúc Crud</a></li>
+      <li>Next: <a href="License.html" title="next chapter"><strong>License</strong></a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, Nathan.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 7.0.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.13</a>
+      
+      |
+      <a href="_sources/report structure.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
